@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Add new meal</title>
+</head>
+<body>
+<form th:object="${meal}" method="POST"  enctype="multipart/form-data" th:action="@{/create-meal}">
+    <label for="name">Meal name</label>
+    <input th:field="*{name}" id="name" type="text"/>
+
+    <label for="description">Description</label>
+    <input th:field="*{description}" id="description" type="text"/>
+
+    <input type="submit" value="Create meal"/>
+</form>
+</body>
+</html>

@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Meals page</title>
+</head>
+<body>
+    <p th:text="'Hello, ' + ${name} + '!'" />
+    <p th:each="meal : ${list}"
+       th:text="${meal.name}">Meal</p>
+</body>
+</html>
