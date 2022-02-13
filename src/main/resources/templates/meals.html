@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head th:replace="fragments/head :: head('Meals app : meals')"></head>
 <body>
 <div th:replace="fragments/menu :: menu"></div>
@@ -13,7 +14,8 @@
             <p th:text="${meal.id}">Id</p>
             <img th:src="@{'/uploads/{imgPath}'(imgPath=${meal.imgPath})}" alt="Meal image">
             <div class="row panel-footer">
-                <a th:href="@{'/cart/addMeal/{mealId}'(mealId=${meal.id})}" class="col-md-1">
+                <a th:href="@{'/cart/addMeal/{mealId}'(mealId=${meal.id})}" class="col-md-1"
+                   sec:authorize="isAuthenticated()">
                     <button type="button" class="btn btn-primary" th:text="Buy">Add</button>
                 </a>
             </div>
