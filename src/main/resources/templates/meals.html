@@ -1,13 +1,24 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <title>Meals page</title>
-</head>
+<head th:replace="fragments/head :: head('Meals app : meals')"></head>
 <body>
-    <p th:text="'Hello, ' + ${name} + '!'" />
-    <p th:each="meal : ${list}"
-       th:text="${meal.name}">Meal</p>
+<div th:replace="fragments/menu :: menu"></div>
+<div class="container-fluid">
+    <h1>Menu</h1>
+    <div class="offers row mx-auto d-flex flex-row justify-content-center ">
+        <div th:each="meal : ${list}" class="offer card col-sm-6 col-md-3  col-lg-2 m-1 p-0">
+
+            <h2 th:text="${meal.name}">Name</h2>
+            <p th:text="${meal.description}">Description</p>
+            <p th:text="${meal.id}">Id</p>
+            <img th:src="@{'/uploads/{imgPath}'(imgPath=${meal.imgPath})}" alt="Meal image">
+            <div class="row panel-footer">
+                <a th:href="@{'/cart/addMeal/{mealId}'(mealId=${meal.id})}" class="col-md-1">
+                    <button type="button" class="btn btn-primary" th:text="Buy">Add</button>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

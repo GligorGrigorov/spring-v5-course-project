@@ -5,12 +5,23 @@ import com.meals.mealsapp.service.MealService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+import java.util.Objects;
 
 @Controller
 public class MealController {
+    private final String UPLOAD_DIR = "./src/main/resources/static/uploads/";
 
     @Autowired
     private MealService mealService;
@@ -29,7 +40,16 @@ public class MealController {
     }
 
     @PostMapping("/create-meal")
-    public String addMeal(@ModelAttribute("meal") Meal meal) {
+    public String addMeal(@RequestParam("file") MultipartFile file, @ModelAttribute("meal") Meal meal) {
+        String fileName = StringUtils.cleanPath(Objects.requireNonNull(file.getOriginalFilename()));
+
+        try {
+            Path path = Paths.get(UPLOAD_DIR + fileName);
+            Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        meal.setImgPath(fileName);
         mealService.createMeal(meal);
         return "redirect:meals";
     }

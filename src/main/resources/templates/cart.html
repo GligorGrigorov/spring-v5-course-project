@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="fragments/head :: head('Meals app : meals')"></head>
+<body>
+<div th:replace="fragments/menu :: menu"></div>
+<div class="container-fluid">
+    <h1>Cart</h1>
+    <div class="offers row mx-auto d-flex flex-row justify-content-center ">
+        <div th:each="meal : ${products}" class="offer card col-sm-6 col-md-3  col-lg-2 m-1 p-0">
+
+            <h2 th:text="${meal.name}">Name</h2>
+            <p th:text="${meal.description}">Description</p>
+            <p th:text="${meal.id}">Id</p>
+            <div class="row panel-footer">
+                <a th:href="@{'/cart/removeMeal/{mealId}'(mealId=${meal.id})}" class="col-md-1">
+                    <button type="button" class="btn btn-primary" th:text="Remove">Buy</button>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

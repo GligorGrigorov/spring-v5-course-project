@@ -1,0 +1,26 @@
+<div th:fragment="menu" xmlns:th="http://www.thymeleaf.org">
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark fixed-top">
+        <a class="navbar-brand" th:href="@{/meals}"><img th:src="@{/img/logo.png}" class="logo"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto col-12 justify-content-between">
+                <li class="nav-item" th:classappend="${#request.getServletPath() == '/meals'}? 'active'">
+                    <a class="nav-link" th:href="@{/meals}">Menu</a>
+                </li>
+                <li class="nav-item" th:classappend="${#request.getServletPath() == '/add-meal'}? 'active'">
+                    <a class="nav-link" th:href="@{/add-meal}">Create meal</a>
+                </li>
+                <li class="nav-item" th:classappend="${#request.getServletPath() == '/kitchen'}? 'active'">
+                    <a class="nav-link" th:href="@{/kitchen}">Kitchen</a>
+                </li>
+                <li class="nav-item" th:classappend="${#request.getServletPath() == '/cart'}? 'active'">
+                    <a class="nav-link" th:href="@{/cart}"><img th:src="@{/img/cart.png}" class="logo"></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
