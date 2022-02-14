@@ -28,6 +28,7 @@ public class User implements UserDetails {
 
     @NotEmpty(message = "Username cannot be empty.")
     @Size(min = 5, max = 250)
+    @NonNull
     @Id
     private String username;
 

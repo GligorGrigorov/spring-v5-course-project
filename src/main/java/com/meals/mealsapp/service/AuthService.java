@@ -16,8 +16,6 @@ public class AuthService {
     private PasswordEncoder passwordEncoder;
 
     public User login(String username, String password) {
-        log.info("Username " + username);
-        log.info("Password " + password);
         User user = userService.findByUsername(username);
 
         if (user.getPassword().equals(password)) {

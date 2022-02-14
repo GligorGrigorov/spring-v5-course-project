@@ -2,6 +2,7 @@ package com.meals.mealsapp.service;
 
 import com.meals.mealsapp.dao.UserRepository;
 import com.meals.mealsapp.entity.User;
+import com.meals.mealsapp.exception.UserAlreadyExistsException;
 import com.meals.mealsapp.exception.UserNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -28,6 +29,9 @@ public class UserService {
     }
 
     public void addUser(User user) {
+        if(userRepository.findById(user.getUsername()).isPresent()) {
+            throw new UserAlreadyExistsException();
+        }
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.saveAndFlush(user);
     }
