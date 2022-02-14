@@ -6,17 +6,23 @@
 <div class="container-fluid">
     <h1>Cart</h1>
     <div class="offers row mx-auto d-flex flex-row justify-content-center ">
-        <div th:each="meal : ${products}" class="offer card col-sm-6 col-md-3  col-lg-2 m-1 p-0">
+        <div th:each="mealEntry : ${products}" class="offer card col-sm-6 col-md-3  col-lg-2 m-1 p-0">
 
-            <h2 th:text="${meal.name}">Name</h2>
-            <p th:text="${meal.description}">Description</p>
-            <p th:text="${meal.id}">Id</p>
+            <h2 th:text="${mealEntry.key.name}">Name</h2>
+            <p th:text="${mealEntry.key.description}">Description</p>
+            <p th:text="${mealEntry.value}">Quantity</p>
             <div class="row panel-footer">
-                <a th:href="@{'/cart/removeMeal/{mealId}'(mealId=${meal.id})}" class="col-md-1">
-                    <button type="button" class="btn btn-primary" th:text="Remove">Buy</button>
+                <a th:href="@{'/cart/removeMeal/{mealId}'(mealId=${mealEntry.key.name})}" class="col-md-1">
+                    <button type="button" class="btn btn-primary" th:text="Remove">Remove</button>
                 </a>
             </div>
         </div>
+        <a th:href="@{/cart/clear}" class="col-md-1">
+            <button type="button" class="btn btn-primary" th:text="Clear">Clear</button>
+        </a>
+        <a th:href="@{/cart/checkout}" class="col-md-1">
+            <button type="button" class="btn btn-primary" th:text="Order">Order</button>
+        </a>
     </div>
 </div>
 </body>

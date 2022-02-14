@@ -27,7 +27,7 @@ public class MealService {
         return mealRepository.findAll();
     }
 
-    public Meal findById(Long mealId) {
+    public Meal findById(String mealId) {
         Optional<Meal> optionalMeal = mealRepository.findById(mealId);
 
         if (optionalMeal.isEmpty()) {

@@ -34,6 +34,11 @@ public class Order {
     @NonNull
     private User user;
 
+    @ManyToOne
+    @JoinColumn(name = "meal_name")
+    @NonNull
+    private Meal meal;
+
     private Timestamp orderedOn = Timestamp.from(Instant.now());
     private Timestamp preparedOn;
 }

@@ -1,11 +1,29 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      lang="en">
 <head th:replace="fragments/head :: head('Meals app : meals')"></head>
 <body>
 <div th:replace="fragments/menu :: menu"></div>
 <div class="container-fluid">
     <h1>Kitchen</h1>
     <div class="offers row mx-auto d-flex flex-row justify-content-center ">
+        <table id="table" class="table table-bordered" style="width: 100%">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>CUSTOMER</th>
+                <th>MEAL</th>
+                <th>ORDERED ON</th>
+                <th>PREPARE</th>
+            </tr>
+            </thead>
+            <tr th:each="order : ${orders}">
+                <td th:text="${order.id}">ID</td>
+                <td th:text="${order.user.username}">Customer</td>
+                <td th:text="${order.meal.name}">Meal Name</td>
+                <td><button type="button" class="btn btn-primary" th:text="Prepare">Prepare</button></td>
+            </tr>
+        </table>
     </div>
 </div>
 </body>
