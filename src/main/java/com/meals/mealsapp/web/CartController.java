@@ -41,7 +41,6 @@ public class CartController {
     @GetMapping("/cart/removeMeal/{mealId}")
     public String removeProductFromCart(@PathVariable("mealId") String mealId, Model model) {
         cartService.removeMeal(mealService.findById(mealId));
-        log.info("Inside remove method");
         return getCart(model);
     }
 

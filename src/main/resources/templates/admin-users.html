@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      lang="en">
+<head th:replace="fragments/head :: head('Meals app : meals')"></head>
+<body>
+<div th:replace="fragments/menu :: menu"></div>
+<div class="container-fluid">
+    <h1 class="text-center text-white">My Orders</h1>
+    <div class="offers row mx-auto d-flex flex-row justify-content-center ">
+        <table id="table" class="table table-bordered text-white" style="width: 100%">
+            <thead>
+            <tr>
+                <th>USERNAME</th>
+                <th>ROLE</th>
+                <th>REMOVE</th>
+            </tr>
+            </thead>
+            <tr th:each="user : ${users}">
+                <td th:text="${user.username}">Meal Name</td>
+                <td th:text="${user.roles}">Status</td>
+                <td>
+                    <a th:href="@{'/admin/remove/{id}'(id=${user.username})}" class="col-md-1"
+                       sec:authorize="isAuthenticated()">
+                        <button type="button" class="btn btn-danger" th:text="Delete">Delete</button>
+                    </a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>
