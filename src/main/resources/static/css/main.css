@@ -65,3 +65,6 @@ form.main-form {
 .file-upload {
      color: white;
 }
+.error {
+        color: red;
+}

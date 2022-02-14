@@ -16,6 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import static org.springframework.validation.BindingResult.MODEL_KEY_PREFIX;
 
@@ -37,12 +38,9 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public String registerNewUser(@ModelAttribute("user") User user, final BindingResult binding, RedirectAttributes redirectAttributes) {
+    public String registerNewUser(@ModelAttribute("user") @Valid User user, final BindingResult binding, RedirectAttributes redirectAttributes) {
         if (binding.hasErrors()) {
-            log.error("Error registering user: {}", binding.getAllErrors());
-            redirectAttributes.addFlashAttribute("user", user);
-            redirectAttributes.addFlashAttribute(MODEL_KEY_PREFIX + "user", binding);
-            return "redirect:register";
+            return "register";
         }
         try {
             userService.addUser(user);

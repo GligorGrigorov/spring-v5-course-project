@@ -12,6 +12,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.stream.Collectors;
@@ -23,9 +25,14 @@ import java.util.stream.Collectors;
 @Setter
 @Table(name = "users")
 public class User implements UserDetails {
+
+    @NotEmpty(message = "Username cannot be empty.")
+    @Size(min = 5, max = 250)
     @Id
     private String username;
 
+    @NotEmpty(message = "Password cannot be empty.")
+    @Size(min = 5, max = 250, message = "Invalid password")
     @NonNull
     private String password;
 
