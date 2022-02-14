@@ -1,5 +1,6 @@
 package com.meals.mealsapp.entity;
 
+import com.meals.mealsapp.status.OrderStatus;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -38,6 +39,8 @@ public class Order {
     @JoinColumn(name = "meal_name")
     @NonNull
     private Meal meal;
+
+    private OrderStatus orderStatus = OrderStatus.IN_PROGRESS;
 
     private Timestamp orderedOn = Timestamp.from(Instant.now());
     private Timestamp preparedOn;

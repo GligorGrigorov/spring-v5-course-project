@@ -1,8 +1,11 @@
 package com.meals.mealsapp.web;
 
 import com.meals.mealsapp.entity.Meal;
+import com.meals.mealsapp.entity.User;
 import com.meals.mealsapp.service.MealService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -37,6 +40,14 @@ public class MealController {
     public String addMeal(Model model) {
         model.addAttribute("meal", new Meal());
         return "add-meal";
+    }
+
+    @GetMapping("/orders")
+    public String getOrders(Model model) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        model.addAttribute("orders", mealService.findOrdersForUser(((User) auth.getPrincipal()).getUsername()));
+
+        return "orders";
     }
 
     @PostMapping("/create-meal")

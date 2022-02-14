@@ -5,29 +5,20 @@
 <body>
 <div th:replace="fragments/menu :: menu"></div>
 <div class="container-fluid">
-    <h1 class="text-center text-white">Kitchen</h1>
+    <h1 class="text-center text-white">My Orders</h1>
     <div class="offers row mx-auto d-flex flex-row justify-content-center ">
         <table id="table" class="table table-bordered text-white" style="width: 100%">
             <thead>
             <tr>
-                <th>ID</th>
-                <th>CUSTOMER</th>
                 <th>MEAL</th>
+                <th>STATUS</th>
                 <th>ORDERED ON</th>
-                <th>PREPARE</th>
             </tr>
             </thead>
             <tr th:each="order : ${orders}">
-                <td th:text="${order.id}">ID</td>
-                <td th:text="${order.user.username}">Customer</td>
                 <td th:text="${order.meal.name}">Meal Name</td>
+                <td th:text="${order.orderStatus}">Status</td>
                 <td th:text="${order.orderedOn}">Timestamp</td>
-                <td>
-                    <a th:href="@{'/kitchen/prepare/{id}'(id=${order.id})}" class="col-md-1"
-                       sec:authorize="isAuthenticated()">
-                        <button type="button" class="btn btn-primary" th:text="Prepare">Prepare</button>
-                    </a>
-                </td>
             </tr>
         </table>
     </div>
