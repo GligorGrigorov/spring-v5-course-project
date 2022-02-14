@@ -11,6 +11,7 @@
 
             <h2 th:text="${meal.name}">Name</h2>
             <p th:text="${meal.description}">Description</p>
+            <p th:text="${meal.description}">Price</p>
             <img th:src="@{'/uploads/{imgPath}'(imgPath=${meal.imgPath})}" alt="Meal image">
             <div class="row panel-footer">
                 <a th:href="@{'/cart/addMeal/{mealId}'(mealId=${meal.name})}" class="col-md-1"

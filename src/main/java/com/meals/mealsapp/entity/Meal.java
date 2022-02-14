@@ -24,4 +24,6 @@ public class Meal {
     private String description;
 
     private String imgPath;
+
+    private int price;
 }

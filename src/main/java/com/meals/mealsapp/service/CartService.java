@@ -69,15 +69,21 @@ public class CartService {
 
     public Map<Meal, Integer> getProductsInCart() {
         Map<Meal, Integer> resultMap = new HashMap<>();
-        products.keySet().stream().map(name -> mealService.findById(name)).forEach(meal ->
+        products.keySet().stream().map(mealService::findById).forEach(meal ->
                 resultMap.put(meal, products.get(meal.getName())));
 
         return Collections.unmodifiableMap(resultMap);
     }
 
-    public BigDecimal getTotal() {
-        //TODO implement
-        return BigDecimal.ONE;
+    public long getTotal() {
+        long totalPrice = 0;
+        for (String key: products.keySet()) {
+            for (int i = 0; i < products.get(key); i++) {
+                totalPrice += mealService.findById(key).getPrice();
+            }
+        }
+
+        return totalPrice;
     }
 
     public void order() {
