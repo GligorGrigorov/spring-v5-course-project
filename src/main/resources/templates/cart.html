@@ -4,7 +4,7 @@
 <body>
 <div th:replace="fragments/menu :: menu"></div>
 <div class="container-fluid">
-    <h1>Cart</h1>
+    <h1 class="text-center text-white">Cart</h1>
     <div class="offers row mx-auto d-flex flex-row justify-content-center ">
         <div th:each="mealEntry : ${products}" class="offer card col-sm-6 col-md-3  col-lg-2 m-1 p-0">
 
@@ -18,7 +18,7 @@
             </div>
         </div>
         <a th:href="@{/cart/clear}" class="col-md-1">
-            <button type="button" class="btn btn-primary" th:text="Clear">Clear</button>
+            <button type="button" class="btn btn-danger" th:text="Clear">Clear</button>
         </a>
         <a th:href="@{/cart/checkout}" class="col-md-1">
             <button type="button" class="btn btn-primary" th:text="Order">Order</button>

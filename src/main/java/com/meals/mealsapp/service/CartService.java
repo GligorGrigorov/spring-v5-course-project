@@ -87,5 +87,7 @@ public class CartService {
                 kitchenService.submitOrder(new Order(userService.findByUsername(((User)auth.getPrincipal()).getUsername()), mealService.findById(key)));
             }
         });
+
+        clear();
     }
 }
