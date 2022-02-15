@@ -7,11 +7,17 @@
 <div class="container-fluid">
     <h1 class="text-center text-white">Admin utils</h1>
     <ul>
-        <li class="nav-item" th:classappend="${#request.getServletPath() == '/admin/register'}? 'active'" sec:authorize="hasRole('ADMIN')">
-            <a class="nav-link" th:href="@{/admin/register}">Register</a>
+        <li class="nav-item" th:classappend="${#request.getServletPath() == '/admin/register'}? 'active'"
+            sec:authorize="hasRole('ADMIN')">
+            <a class="nav-link" th:href="@{/admin/register}">
+                <button type="button" class="btn btn-primary" th:text="Register">Register user</button>
+            </a>
         </li>
-        <li class="nav-item" th:classappend="${#request.getServletPath() == '/admin/users'}? 'active'" sec:authorize="hasRole('ADMIN')">
-            <a class="nav-link" th:href="@{/admin/users}">Users</a>
+        <li class="nav-item" th:classappend="${#request.getServletPath() == '/admin/users'}? 'active'"
+            sec:authorize="hasRole('ADMIN')">
+            <a class="nav-link" th:href="@{/admin/users}">
+                <button type="button" class="btn btn-primary" th:text="Users">Users</button>
+            </a>
         </li>
     </ul>
 </div>
